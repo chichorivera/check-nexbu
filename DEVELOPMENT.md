@@ -5,7 +5,7 @@
 Nexbu Check es una herramienta de auditoría automatizada para sitios WordPress compuesta de dos partes:
 
 1. **Web App** (`/webapp/`) — Analiza cualquier sitio WordPress desde afuera (público). Alojada en `check.nexbu.com`.
-2. **Plugin companion** (`/plugin/`) — Se instala en el sitio WordPress a auditar. Expone el endpoint `tusitio.com/nexbu-check/` con datos internos que no son accesibles desde afuera.
+2. **Plugin companion** (`/plugin-nexbu-check/`) — Se instala en el sitio WordPress a auditar. Expone el endpoint `tusitio.com/nexbu-check/` con datos internos que no son accesibles desde afuera.
 
 ---
 
@@ -75,7 +75,7 @@ check-nexbu/
 │           ├── CategoryCard.jsx  ← card colapsable por categoría
 │           └── CheckItem.jsx     ← item individual con icono de estado
 │
-└── plugin/                     ← Plugin WordPress companion
+└── plugin-nexbu-check/         ← Plugin WordPress companion
     ├── nexbu-check.php         ← main plugin file + página de admin
     └── includes/
         ├── class-auth.php      ← generación y validación de API Key (hashed)
@@ -101,7 +101,7 @@ npm run dev
 
 ### Plugin
 
-Copia la carpeta `plugin/nexbu-check/` a:
+Copia la carpeta `plugin-nexbu-check/` a:
 ```
 /Applications/MAMP/htdocs/tu-sitio/wp-content/plugins/
 ```

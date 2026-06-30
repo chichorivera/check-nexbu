@@ -40,7 +40,7 @@ check-nexbu/
 │   ├── src/             # React 18 + Vite + Tailwind
 │   └── server/          # Express — proxy de checks + API
 │
-└── plugin/              # Plugin companion para WordPress
+└── plugin-nexbu-check/  # Plugin companion para WordPress
     ├── nexbu-check.php
     └── includes/
 ```
@@ -119,7 +119,7 @@ Abre **http://localhost:5173**
 
 ### Plugin companion
 
-1. Copia la carpeta `plugin/nexbu-check/` a `wp-content/plugins/` de tu WordPress.
+1. Copia la carpeta `plugin-nexbu-check/` a `wp-content/plugins/` de tu WordPress.
 2. Actívalo desde WP Admin → Plugins.
 3. Ve a **Ajustes → Nexbu Check** y genera una API Key.
 4. Pega la API Key en check.nexbu.com al analizar tu sitio.
