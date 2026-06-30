@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Globe, Key, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react'
+import { Globe, Key, ChevronDown, ChevronUp, AlertCircle, Download } from 'lucide-react'
 
 export default function CheckForm({ onSubmit, error }) {
   const [url, setUrl] = useState('')
@@ -81,6 +81,14 @@ export default function CheckForm({ onSubmit, error }) {
                 <p className="text-xs text-[#787774]">
                   Genera la API Key en WordPress → Ajustes → Nexbu Check
                 </p>
+                <a
+                  href="/downloads/nexbu-check-plugin.zip"
+                  download
+                  className="inline-flex items-center gap-1.5 text-xs text-[#2383e2] hover:underline"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  ¿No lo tienes instalado? Descargar plugin (.zip)
+                </a>
               </div>
             )}
           </div>
