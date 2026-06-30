@@ -42,7 +42,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f7f5]">
+    <div className="min-h-screen bg-[#f5f5f4]">
       <Header />
       <main className="max-w-3xl mx-auto px-4 py-10">
         {phase === 'idle' && (
