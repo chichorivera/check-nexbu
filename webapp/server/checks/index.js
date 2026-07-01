@@ -167,9 +167,9 @@ function parsePluginData(data) {
 
 function buildCategories(security, seo, content, plugin) {
   const categoriesMap = {
-    security: { id: 'security', label: 'Seguridad', icon: '🔒', checks: security },
-    seo: { id: 'seo', label: 'SEO', icon: '🔍', checks: seo },
-    content: { id: 'content', label: 'Contenido y Rendimiento', icon: '⚡', checks: content },
+    security: { id: 'security', label: 'Seguridad', icon: '/seguridad.png', checks: security },
+    seo: { id: 'seo', label: 'SEO', icon: '/search.png', checks: seo },
+    content: { id: 'content', label: 'Contenido y Rendimiento', icon: '/rendimiento.png', checks: content },
   }
 
   if (plugin.length > 0) {

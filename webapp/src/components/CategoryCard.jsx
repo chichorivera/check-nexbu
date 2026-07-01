@@ -28,7 +28,10 @@ export default function CategoryCard({ category }) {
         className="w-full flex items-center justify-between px-5 py-4 hover:bg-[#f5f5f4] transition-colors text-left"
       >
         <div className="flex items-center gap-3">
-          <span className="text-lg">{category.icon}</span>
+          {category.icon.startsWith('/')
+            ? <img src={category.icon} alt={category.label} className="w-8 h-8 object-contain" />
+            : <span className="text-lg">{category.icon}</span>
+          }
           <div>
             <h3 className="text-sm font-semibold text-[#1c1917]">{category.label}</h3>
             <p className="text-xs text-[#78716c]">{passCount} / {total} checks correctos</p>
