@@ -1,4 +1,5 @@
-import { RotateCcw, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { RotateCcw, ExternalLink, Copy, Check } from 'lucide-react'
 import CategoryCard from './CategoryCard.jsx'
 
 function ScoreCircle({ score }) {
@@ -29,7 +30,42 @@ function ScoreCircle({ score }) {
   )
 }
 
-export default function CheckResults({ results, onReset }) {
+function ShareBar({ shareId }) {
+  const [copied, setCopied] = useState(false)
+  const shareUrl = `${window.location.origin}/r/${shareId}`
+
+  function copy() {
+    navigator.clipboard.writeText(shareUrl)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
+  return (
+    <div className="border-t border-[#e7e5e4] pt-4 mt-4">
+      <p className="text-xs font-medium text-[#78716c] mb-2">Enlace para compartir</p>
+      <div className="flex items-center gap-2">
+        <div className="flex-1 min-w-0 bg-[#f5f5f4] border border-[#e7e5e4] rounded-lg px-3 py-2">
+          <p className="text-xs text-[#78716c] font-mono truncate">{shareUrl}</p>
+        </div>
+        <button
+          onClick={copy}
+          className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+            copied
+              ? 'bg-[#f0fdf4] text-[#166534] border border-[#bbf7d0]'
+              : 'bg-[#1c1917] text-white hover:bg-[#374151]'
+          }`}
+        >
+          {copied
+            ? <><Check className="w-3.5 h-3.5" />Copiado</>
+            : <><Copy className="w-3.5 h-3.5" />Copiar enlace</>
+          }
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default function CheckResults({ results, onReset, resetLabel = 'Nuevo análisis' }) {
   const passCount = results.categories.flatMap(c => c.checks).filter(c => c.status === 'pass').length
   const totalCount = results.categories.flatMap(c => c.checks).length
   const checkedAt = new Date(results.checkedAt).toLocaleString('es-ES', {
@@ -40,7 +76,7 @@ export default function CheckResults({ results, onReset }) {
     <div className="space-y-4">
       {/* Summary card */}
       <div className="card p-6">
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-start justify-between flex-wrap gap-4">
           <div className="flex items-center gap-5">
             <ScoreCircle score={results.score} />
             <div className="space-y-1">
@@ -69,9 +105,11 @@ export default function CheckResults({ results, onReset }) {
 
           <button onClick={onReset} className="btn-ghost">
             <RotateCcw className="w-3.5 h-3.5" />
-            Nuevo análisis
+            {resetLabel}
           </button>
         </div>
+
+        {results.shareId && <ShareBar shareId={results.shareId} />}
       </div>
 
       {/* Categories */}

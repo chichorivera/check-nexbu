@@ -148,7 +148,7 @@ async function checkRobotsTxt(url, axiosConfig) {
     }
 
     const content = typeof r.data === 'string' ? r.data : ''
-    if (/disallow:\s*\//im.test(content)) {
+    if (/^disallow:\s*\/\s*$/im.test(content)) {
       return { ...check, status: 'fail', message: 'robots.txt tiene "Disallow: /" — bloquea todos los buscadores.' }
     }
     if (!content.includes('Sitemap:') && !content.includes('sitemap:')) {

@@ -5,6 +5,7 @@ import CheckForm from './components/CheckForm.jsx'
 import CheckProgress from './components/CheckProgress.jsx'
 import CheckResults from './components/CheckResults.jsx'
 import GuidePage from './pages/GuidePage.jsx'
+import SharedResultPage from './pages/SharedResultPage.jsx'
 
 function HomePage() {
   const [phase, setPhase] = useState('idle')
@@ -60,6 +61,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/guia" element={<GuidePage />} />
+          <Route path="/r/:id" element={<SharedResultPage />} />
         </Routes>
       </div>
     </BrowserRouter>

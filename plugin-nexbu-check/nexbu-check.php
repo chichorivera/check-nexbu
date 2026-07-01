@@ -14,6 +14,7 @@ defined('ABSPATH') || exit;
 
 define('NEXBU_CHECK_VERSION', '1.0.0');
 define('NEXBU_CHECK_PATH', plugin_dir_path(__FILE__));
+define('NEXBU_CHECK_URL',  plugin_dir_url(__FILE__));
 
 require_once NEXBU_CHECK_PATH . 'includes/class-auth.php';
 require_once NEXBU_CHECK_PATH . 'includes/class-scanner.php';
@@ -26,6 +27,13 @@ class Nexbu_Check_Admin {
     public function __construct() {
         add_action('admin_menu', [$this, 'add_menu']);
         add_action('admin_init', [$this, 'handle_actions']);
+        add_filter('plugin_action_links_nexbu-check/nexbu-check.php', [$this, 'add_action_links']);
+    }
+
+    public function add_action_links($links) {
+        $url = admin_url('options-general.php?page=nexbu-check');
+        array_unshift($links, '<a href="' . esc_url($url) . '">Configurar</a>');
+        return $links;
     }
 
     public function add_menu() {
@@ -64,7 +72,10 @@ class Nexbu_Check_Admin {
         if ($new_key) delete_transient('nexbu_check_new_key');
         ?>
         <div class="wrap" style="max-width:680px">
-            <h1>Nexbu Check</h1>
+            <div style="display:flex;align-items:center;gap:12px;margin:16px 0 8px">
+                <img src="<?php echo esc_url(NEXBU_CHECK_URL . 'assets/logo-nexbu.png'); ?>" alt="Nexbu" style="height:28px;width:auto">
+            </div>
+            <h1 style="margin-top:0">Nexbu Check</h1>
             <p>Plugin companion para <a href="https://check.nexbu.com" target="_blank">check.nexbu.com</a>. Expone el endpoint <code><?php echo esc_html($endpoint_url); ?></code> con datos internos del sitio para auditoría remota.</p>
 
             <?php if (isset($_GET['key_generated'])): ?>
