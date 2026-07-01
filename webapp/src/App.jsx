@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import CheckForm from './components/CheckForm.jsx'
 import CheckProgress from './components/CheckProgress.jsx'
 import CheckResults from './components/CheckResults.jsx'
+import GuidePage from './pages/GuidePage.jsx'
 
-export default function App() {
-  const [phase, setPhase] = useState('idle') // idle | checking | done
+function HomePage() {
+  const [phase, setPhase] = useState('idle')
   const [results, setResults] = useState(null)
   const [error, setError] = useState(null)
 
@@ -42,19 +44,24 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f4]">
-      <Header />
-      <main className="max-w-3xl mx-auto px-4 py-10">
-        {phase === 'idle' && (
-          <CheckForm onSubmit={handleSubmit} error={error} />
-        )}
-        {phase === 'checking' && (
-          <CheckProgress />
-        )}
-        {phase === 'done' && results && (
-          <CheckResults results={results} onReset={handleReset} />
-        )}
-      </main>
-    </div>
+    <main className="max-w-3xl mx-auto px-4 py-10">
+      {phase === 'idle' && <CheckForm onSubmit={handleSubmit} error={error} />}
+      {phase === 'checking' && <CheckProgress />}
+      {phase === 'done' && results && <CheckResults results={results} onReset={handleReset} />}
+    </main>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-[#f5f5f4]">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/guia" element={<GuidePage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
