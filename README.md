@@ -8,14 +8,14 @@ Analiza seguridad, SEO, rendimiento y contenido de cualquier sitio WordPress des
 
 ## Demo
 
-> **check.nexbu.com** ← _próximamente_
+> **check.nexbu.cloud** ← _próximamente_
 
 ---
 
 ## Cómo funciona
 
 ```
-Usuario ingresa URL en check.nexbu.com
+Usuario ingresa URL en check.nexbu.cloud
         │
         ▼
 Express server (Node.js)
@@ -36,7 +36,7 @@ Express server (Node.js)
 
 ```
 check-nexbu/
-├── webapp/              # Web app (check.nexbu.com)
+├── webapp/              # Web app (check.nexbu.cloud)
 │   ├── src/             # React 18 + Vite + Tailwind
 │   └── server/          # Express — proxy de checks + API
 │
@@ -122,7 +122,7 @@ Abre **http://localhost:5173**
 1. Copia la carpeta `plugin-nexbu-check/` a `wp-content/plugins/` de tu WordPress.
 2. Actívalo desde WP Admin → Plugins.
 3. Ve a **Ajustes → Nexbu Check** y genera una API Key.
-4. Pega la API Key en check.nexbu.com al analizar tu sitio.
+4. Pega la API Key en check.nexbu.cloud al analizar tu sitio.
 
 ---
 
@@ -148,7 +148,7 @@ pm2 save && pm2 startup
 ```nginx
 server {
     listen 80;
-    server_name check.nexbu.com;
+    server_name check.nexbu.cloud;
 
     location / {
         proxy_pass http://localhost:3001;
@@ -159,7 +159,7 @@ server {
 ```
 
 ```bash
-certbot --nginx -d check.nexbu.com
+certbot --nginx -d check.nexbu.cloud
 ```
 
 ---
@@ -170,7 +170,7 @@ certbot --nginx -d check.nexbu.com
 - Se guarda como hash (`wp_hash`) en la base de datos, **nunca en texto plano**.
 - Solo se muestra una vez al generarse.
 - El endpoint valida con `hash_equals()` para prevenir timing attacks.
-- CORS restringido a `check.nexbu.com`.
+- CORS restringido a `check.nexbu.cloud`.
 - El navegador nunca habla directamente con el plugin — todo pasa por el servidor Express.
 
 ---
