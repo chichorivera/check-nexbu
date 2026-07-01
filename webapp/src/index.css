@@ -54,7 +54,8 @@
   .btn-primary {
     @apply inline-flex items-center gap-2 px-4 py-2 bg-[#1c1917] text-white text-sm font-medium
            rounded-lg hover:bg-[#374151] active:bg-[#111827]
-           transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed;
+           transition-colors duration-150
+           disabled:bg-[#d6d3d1] disabled:text-[#a8a29e] disabled:cursor-not-allowed;
   }
 
   .btn-ghost {
