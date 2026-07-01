@@ -29,7 +29,7 @@ export default function CategoryCard({ category }) {
       >
         <div className="flex items-center gap-3">
           {category.icon.startsWith('/')
-            ? <img src={category.icon} alt={category.label} className="w-8 h-8 object-contain" />
+            ? <img src={category.icon} alt={category.label} className="w-12 h-12 object-contain" />
             : <span className="text-lg">{category.icon}</span>
           }
           <div>

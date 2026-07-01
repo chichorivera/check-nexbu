@@ -121,7 +121,7 @@ export default function CheckForm({ onSubmit, error }) {
           { icon: '/contenido.png', label: 'Contenido' },
         ].map(item => (
           <div key={item.label} className="card p-3 text-center space-y-2">
-            <img src={item.icon} alt={item.label} className="w-10 h-10 object-contain mx-auto" />
+            <img src={item.icon} alt={item.label} className="w-[60px] h-[60px] object-contain mx-auto" />
             <div className="text-xs text-[#78716c] font-medium">{item.label}</div>
           </div>
         ))}
